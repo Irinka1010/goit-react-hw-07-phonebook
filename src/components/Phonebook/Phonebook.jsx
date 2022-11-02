@@ -7,8 +7,8 @@ import { getFilteredContacts, getFilter, getState } from 'redux/selectors';
 
 import {
   fetchContacts,
-  addContacts,
-  removeContacts,
+  addContact,
+  removeContact,
 } from 'redux/contactsOperation';
 import { setFilter } from 'redux/filterSlice';
 import { useEffect } from 'react';
@@ -27,12 +27,12 @@ export default function Phonebook() {
     dispatch(setFilter(value));
   };
 
-  const onAddContact = data => {
-    const action = addContacts(data);
+  const onAddContact = contact => {
+    const action = addContact(contact);
     dispatch(action);
   };
-  const onRemoveContacts = id => {
-    const action = removeContacts(id);
+  const onRemoveContact = id => {
+    const action = removeContact(id);
     dispatch(action);
   };
 
@@ -46,7 +46,7 @@ export default function Phonebook() {
         <h2 className={css.title}>Contacts</h2>
         <Filter onChange={hendelChenge} value={filter} />
         {contacts.length > 0 && (
-          <ContactsList items={contacts} removeContacts={onRemoveContacts} />
+          <ContactsList items={contacts} removeContact={onRemoveContact} />
         )}
         {loading && <p>...loading</p>}
         {error && <p>oops, something went wrong</p>}

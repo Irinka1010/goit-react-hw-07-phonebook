@@ -1,11 +1,16 @@
-import * as api from 'contacts-api';
+import * as api from './api';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-const isDuplicate = (data, contacts) => {
-  const normalizedName = data.name.toLowerCase();
+const isDuplicate = ({ name, phone }, contacts) => {
+  const normalizedName = name.toLowerCase();
+  const normalizedPhone = phone.toLowerCase();
 
-  const result = contacts.find(({ name, phone }) => {
-    return normalizedName === name.toLowerCase() && data.phone === phone;
+  const result = contacts.find(item => {
+    return (
+      normalizedName === item.name.toLowerCase() &&
+      normalizedPhone === item.phone.toLowerCase()
+    );
   });
+
   return Boolean(result);
 };
 
@@ -21,8 +26,8 @@ export const fetchContacts = createAsyncThunk(
   }
 );
 
-export const addContacts = createAsyncThunk(
-  'contacts/addContact',
+export const addContact = createAsyncThunk(
+  'contacts/add',
   async (data, { rejectWithValue }) => {
     try {
       const result = await api.addContact(data);
@@ -35,13 +40,12 @@ export const addContacts = createAsyncThunk(
     condition: (data, { getState }) => {
       const { contacts } = getState();
       if (isDuplicate(data, contacts.item)) {
-        alert(`${data.name}: ${data.phone} is already exist`);
-        return false;
+        return alert(`${data.name}: ${data.phone} is already exist`);
       }
     },
   }
 );
-export const removeContacts = createAsyncThunk(
+export const removeContact = createAsyncThunk(
   'contacts/remove',
   async (id, { rejectWithValue }) => {
     try {

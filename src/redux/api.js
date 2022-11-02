@@ -15,3 +15,8 @@ export const removeContact = async id => {
   const { data } = await axios.delete(`/contacts/${id}`);
   return data;
 };
+// addContact({
+//   name: '5588',
+//   phone: '3225-52654',
+// });
+// removeContact(5);

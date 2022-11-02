@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import css from 'components/ContactsList/ContactsList.module.css';
-export default function ContactsList({ items, removeContacts }) {
+export default function ContactsList({ items, removeContact }) {
   const elements = items.map(({ name, phone, id }) => {
     return (
       <li className={css.item} key={id}>
@@ -10,7 +10,7 @@ export default function ContactsList({ items, removeContacts }) {
           className={css.button}
           type="button"
           onClick={() => {
-            removeContacts(id);
+            removeContact(id);
           }}
         >
           Delete
@@ -18,10 +18,13 @@ export default function ContactsList({ items, removeContacts }) {
       </li>
     );
   });
-  return <ul className={css.list}>{elements}</ul>;
+  return <ol className={css.list}>{elements}</ol>;
 }
+ContactsList.defaultProps = {
+  items: [],
+};
 ContactsList.propTypes = {
-  removeContacts: PropTypes.func.isRequired,
+  removeContact: PropTypes.func.isRequired,
   items: PropTypes.arrayOf(
     PropTypes.exact({
       createdAt: PropTypes.string,
