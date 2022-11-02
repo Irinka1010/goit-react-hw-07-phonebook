@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { nanoid } from 'nanoid';
 import css from 'components/Filter/Filter.module.css';
-export default function File({ onChange, value }) {
+export default function Filter({ onChange, value }) {
   const filterid = nanoid();
   return (
     <div className={css.filter}>
@@ -16,7 +16,7 @@ export default function File({ onChange, value }) {
     </div>
   );
 }
-File.propTypes = {
+Filter.propTypes = {
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
 };
