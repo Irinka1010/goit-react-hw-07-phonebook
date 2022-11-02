@@ -10,38 +10,38 @@ const constsSlice = createSlice({
   name: 'contacts',
   initialState,
   extraReducers: {
-    [fetchContacts.pending]: store => {
-      store.loading = true;
+    [fetchContacts.pending]: state => {
+      state.loading = true;
     },
-    [fetchContacts.fulfilled]: (store, { payload }) => {
-      store.loading = false;
-      store.items = payload;
+    [fetchContacts.fulfilled]: (state, { payload }) => {
+      state.loading = false;
+      state.items = payload;
     },
-    [fetchContacts.rejected]: (store, { payload }) => {
-      store.loading = true;
-      store.error = payload;
+    [fetchContacts.rejected]: (state, { payload }) => {
+      state.loading = true;
+      state.error = payload;
     },
-    [addContact.pending]: store => {
-      store.loading = true;
+    [addContact.pending]: state => {
+      state.loading = true;
     },
-    [addContact.fulfilled]: (store, { payload }) => {
-      store.loading = false;
-      store.items.push(payload);
+    [addContact.fulfilled]: (state, { payload }) => {
+      state.loading = false;
+      state.items.push(payload);
     },
-    [addContact.rejected]: (store, { payload }) => {
-      store.loading = false;
-      store.error = payload;
+    [addContact.rejected]: (state, { payload }) => {
+      state.loading = false;
+      state.error = payload;
     },
-    [removeContact.pending]: store => {
-      store.loading = true;
+    [removeContact.pending]: state => {
+      state.loading = true;
     },
-    [removeContact.fulfilled]: (store, { payload }) => {
-      store.loading = false;
-      store.items = store.items.filter(item => item.id !== payload);
+    [removeContact.fulfilled]: (state, { payload }) => {
+      state.loading = false;
+      state.items = state.items.filter(item => item.id !== payload);
     },
-    [removeContact.rejected]: (store, { payload }) => {
-      store.loading = false;
-      store.error = payload;
+    [removeContact.rejected]: (state, { payload }) => {
+      state.loading = false;
+      state.error = payload;
     },
   },
 });
