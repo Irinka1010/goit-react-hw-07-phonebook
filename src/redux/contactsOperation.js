@@ -39,18 +39,20 @@ export const addContact = createAsyncThunk(
   {
     condition: (data, { getState }) => {
       const { contacts } = getState();
-      if (isDuplicate(data, contacts.item)) {
-        return alert(`${data.name}: ${data.phone} is already exist`);
+
+      if (isDuplicate(data, contacts.items)) {
+        alert(`${data.name}: ${data.phone} is already exist`);
+        return false;
       }
     },
   }
 );
 export const removeContact = createAsyncThunk(
-  'contacts/remove',
+  'contacts/deleteContact',
   async (id, { rejectWithValue }) => {
     try {
       await api.removeContact(id);
-      return;
+      return id;
     } catch (error) {
       return rejectWithValue(error);
     }

@@ -3,7 +3,7 @@ import ContactsList from 'components/ContactsList/ContactsList';
 import Filter from 'components/Filter/Filter';
 import css from 'components/Phonebook/Phonebook.module.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { getFilteredContacts, getFilter, getContacts } from 'redux/selectors';
+import { getFilteredContacts, getFilter, getState } from 'redux/selectors';
 
 import {
   fetchContacts,
@@ -16,7 +16,7 @@ import { useEffect } from 'react';
 export default function Phonebook() {
   const contacts = useSelector(getFilteredContacts);
   const filter = useSelector(getFilter);
-  const { loading, error } = useSelector(getContacts);
+  const { loading, error } = useSelector(getState);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchContacts());

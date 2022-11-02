@@ -32,16 +32,16 @@ const constsSlice = createSlice({
       state.loading = false;
       state.error = payload;
     },
-    [removeContact.pending]: state => {
-      state.loading = true;
+    [removeContact.pending]: store => {
+      store.loading = true;
     },
-    [removeContact.fulfilled]: (state, { payload }) => {
-      state.loading = false;
-      state.items = state.items.filter(item => item.id !== payload);
+    [removeContact.fulfilled]: (store, { payload }) => {
+      store.loading = false;
+      store.items = store.items.filter(item => item.id !== payload);
     },
-    [removeContact.rejected]: (state, { payload }) => {
-      state.loading = false;
-      state.error = payload;
+    [removeContact.rejected]: (store, { payload }) => {
+      store.loading = false;
+      store.error = payload;
     },
   },
 });
