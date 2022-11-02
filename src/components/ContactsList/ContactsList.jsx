@@ -20,9 +20,7 @@ export default function ContactsList({ items, removeContact }) {
   });
   return <ol className={css.list}>{elements}</ol>;
 }
-ContactsList.defaultProps = {
-  items: [],
-};
+
 ContactsList.propTypes = {
   removeContact: PropTypes.func.isRequired,
   items: PropTypes.arrayOf(
